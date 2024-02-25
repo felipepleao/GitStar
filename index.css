@@ -1,0 +1,28 @@
+@import url(styles/header.css);
+@import url(styles/favorite.css);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+  --background-color: #0C0C0D;
+  --background-colorTwo: #17171A;
+  --border-color: #252529;
+  --button-color: #7450AC;
+  --text-color: #FBF9FE;
+
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 74rem;
+  width: 100%;
+}
+
+body {
+  background-color: var(--background-color);
+}

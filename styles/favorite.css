@@ -1,0 +1,43 @@
+#main {
+  padding: 0 2rem;
+}
+
+#favorites-add {
+  margin-top: 5.4rem;
+  display: flex;
+  align-items: center;
+}
+
+#favorites-add {
+  justify-content: space-between;
+  /* background-color: yellow; */
+}
+
+#favorites-add input {
+  font-size: 1.4rem;
+  padding: 1.2rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  background: var(--background-colorTwo);
+  width: 90%;
+}
+
+#favorites-add button {
+  width: 3.2rem;
+  height: 3.2rem;
+  background: url(../assets/star-regular.svg) no-repeat ;
+  border: none;
+  cursor: pointer;
+  transition: .4s;
+}
+
+#favorites-add button:hover {
+  background: url(../assets/star-solid.svg);
+}
+
+@media (max-width: 640px) {
+  #favorites-add {
+    gap: 0 1.2rem;
+  }
+}

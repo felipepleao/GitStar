@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Git Favorito</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitStar</title>
 
-  <link rel="stylesheet" href="styles.css">
-  <script src="scripts/main.js"></script>
-</head>
-<body>
-  <div class="teste">
-    <p class="texto-teste">1</p>
-  </div>
-</body>
+    <link rel="stylesheet" href="index.css" />
+    <script src="scripts/main.js" defer type="module"></script>
+  </head>
+  <body>
+    <header id="header">
+      <div class="header container">
+        <h1 class="header-title">
+          <img src="assets/github-alt.svg" alt="Logo site git favoritos" />
+          GitStar
+        </h1>
+
+        <form action="" id="search-bar">
+          <input
+            class="search-bar-input"
+            type="search"
+            placeholder="Pesquise o perfil aqui"
+          />
+          <button class="search-bar-button">
+            <img src="assets/search.svg" alt="Lupa de pesquisa" />
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="favorite-container container">
+        <form action="" id="favorites-add">
+          <input
+            class="add-favorites-input"
+            type="search"
+            placeholder="Digite o username do seu github favorito"
+          />
+          <button class="add-favorites-button">
+            <!-- <img src="assets/star-regular.svg" alt="botao de favoritas" /> -->
+          </button>
+        </form>
+
+        <div class="favorite-list"></div>
+      </div>
+    </main>
+  </body>
 </html>
