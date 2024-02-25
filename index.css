@@ -9,6 +9,7 @@
 
 :root {
   font-size: 62.5%;
+  font-family: "Inter", sans-serif;
   --background-color: #0C0C0D;
   --background-colorTwo: #17171A;
   --border-color: #252529;

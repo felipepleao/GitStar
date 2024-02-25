@@ -1,9 +1,13 @@
 #main {
+  margin-top: 5.4rem;
   padding: 0 2rem;
 }
 
-#favorites-add {
-  margin-top: 5.4rem;
+#favorites-add,
+.favorite-list div,
+.favorite-list-item-profile,
+.favorite-list-header-flex,
+.favorite-list-item-flex {
   display: flex;
   align-items: center;
 }
@@ -20,13 +24,13 @@
   border: 1px solid var(--border-color);
   color: var(--text-color);
   background: var(--background-colorTwo);
-  width: 90%;
+  width: 92%;
 }
 
 #favorites-add button {
   width: 3.2rem;
   height: 3.2rem;
-  background: url(../assets/star-regular.svg) no-repeat ;
+  background: url(../assets/star-regular.svg) no-repeat;
   border: none;
   cursor: pointer;
   transition: .4s;
@@ -36,7 +40,66 @@
   background: url(../assets/star-solid.svg);
 }
 
+.favorite-list {
+  margin-top: 5.4rem;
+}
+
+.favorite-list div {
+  color: var(--text-color);
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.favorite-list-header h2,
+.favorite-list-header h3 {
+  font-size: 1.8rem;
+}
+
+.favorite-list-header {
+  padding: 2rem 1rem;
+}
+
+.favorite-list-header-flex {
+  gap: 0 10rem;
+}
+
+.favorite-list-item h2,
+.favorite-list-item h3 {
+  font-size: 1.4rem;
+}
+
+.favorite-list-item-profile {
+  gap: 0 1rem;
+}
+
+.favorite-list-item-profile img {
+  width: 5.6rem;
+  height: 5.6rem;
+  /* border-radius: 50%; */
+}
+
+.favorite-list-item {
+  background-color: var(--background-colorTwo);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 1.6rem 1.2rem;
+}
+
+.favorite-list-item-flex {
+  gap: 0 18rem;
+}
+
+.favorite-list-item-flex button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 @media (max-width: 640px) {
+  #main {
+    margin-top: 3.4rem;
+  }
+
   #favorites-add {
     gap: 0 1.2rem;
   }
