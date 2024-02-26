@@ -45,37 +45,28 @@
           <button class="add-favorites-button"></button>
         </form>
 
-        
+        <div class="table-wrapper">
+          <table class="table-favorites">
+            <thead class="table-favorites-header">
+              <tr class="table-favorites-header-line">
+                <th>Usuário</th>
+                <th>Repositorios</th>
+                <th>Followers</th>
+                <th>Ação</th>
+              </tr>
+            </thead>
 
-        <!-- <div class="favorite-list">
-          <div class="favorite-list-header">
-            <h2>Usuário</h2>
-
-            <div class="favorite-list-header-flex">
-              <h3>Repositorios</h3>
-
-              <h3>Seguidores</h3>
-
-              <h3>Ação</h3>
-            </div>
-          </div>
-
-          <div class="favorite-list-item">
-            <h2 class="favorite-list-item-profile">
-              <img src="" alt="foto perfil github" />
-              <p>Felipe</p>
-            </h2>
-            <div class="favorite-list-item-flex">
-              <h3>9</h3>
-
-              <h3>39</h3>
-
-              <button>
-                <img src="assets/trash-solid.svg" alt="">
-              </button>
-            </div>
-          </div>
-        </div> -->
+            <tbody class="table-favorites-body">
+              <tr class="table-favorites-body-noFav">
+                <td colspan="4">
+                  <div class="table-nofavs">
+                    <p>Nenhum favorito ainda</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </main>
   </body>
