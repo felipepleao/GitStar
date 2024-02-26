@@ -59,7 +59,6 @@
 
 .table-nofavs {
   height: 30rem;
-  background-color: var(--background-colorTwo);
   display: flex;
   align-items: center;
   justify-content: center;
