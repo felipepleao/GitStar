@@ -65,6 +65,7 @@
   font-size: 1.8rem;
   text-transform: uppercase;
   color: var(--text-color);
+  font-weight: 600;
 }
 
 .table-favorites {
