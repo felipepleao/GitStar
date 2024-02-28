@@ -2,14 +2,51 @@ export default function favoriteProfile() {
   const formAddFavorites = document.getElementById("favorites-add");
   const inputTextFavorite = document.querySelector(".add-favorites-input");
   const tableFavorites = document.querySelector(".table-favorites-body");
-  const favorites = JSON.parse(localStorage.getItem("favoriteProfile")) || [];
+  const displayNoFavorites = document.querySelector(
+    ".table-favorites-body-noFav"
+  );
+  console.log(displayNoFavorites);
+  let favorites = JSON.parse(localStorage.getItem("favoriteProfile")) || [];
+  let loginsAdd = [];
 
   function attProfileGithubLocalStorage() {
     localStorage.setItem("favoriteProfile", JSON.stringify(favorites));
   }
 
+  function noFavDisplay() {
+    const noFav = favorites.length <= 0;
+    if (!noFav) {
+      displayNoFavorites.classList.add("hidden");
+    } else {
+      displayNoFavorites.classList.remove("hidden");
+    }
+  }
+
+  noFavDisplay();
+
+  function removeFavorite(tr, gitFavorite) {
+    let isOk = confirm(
+      "Tem certeza que deseja remover esse usuário do favoritos?"
+    );
+    if (isOk) {
+      tr.remove();
+
+      const index = favorites.findIndex(
+        (favoriteItem) => favoriteItem.login === gitFavorite.login
+      );
+
+      if (index > 0) {
+        favorites.splice(index, index);
+      } else {
+        favorites.splice(index, 1);
+      }
+      attProfileGithubLocalStorage();
+      noFavDisplay();
+    }
+  }
+
+  // função para criar um item de lista de favoritos
   function createItemFavorite(gitFavorite) {
-    const { avatar_url, login, public_repos, followers } = gitFavorite;
     const tr = document.createElement("tr");
 
     tr.innerHTML = `
@@ -42,40 +79,72 @@ export default function favoriteProfile() {
     tr.querySelector(".repositories").textContent = gitFavorite.public_repos;
     tr.querySelector(".followers").textContent = gitFavorite.followers;
 
+    // evento para remover um item da lista
+    tr.querySelector(".table-favorites-body-remove").addEventListener(
+      "click",
+      () => {
+        removeFavorite(tr, gitFavorite);
+      }
+    );
+
     return tr;
   }
 
+  // funçao async para requisicao de api do github
   async function getProfileGithub(userName) {
-    const dataResponse = await fetch(
-      `https://api.github.com/users/${userName}`
-    );
-    const dataJSON = await dataResponse.json();
-    const { avatar_url, login, public_repos, followers } = dataJSON;
+    try {
+      const dataResponse = await fetch(
+        `https://api.github.com/users/${userName}`
+      );
+      const dataJSON = await dataResponse.json();
+      const { avatar_url, login, public_repos, followers } = dataJSON;
 
-    return {
-      avatar_url,
-      login,
-      public_repos,
-      followers,
-    };
+      return {
+        avatar_url,
+        login,
+        public_repos,
+        followers,
+      };
+      
+    } catch (erro) {
+      console.log(erro);
+    }
   }
 
   formAddFavorites.addEventListener("submit", async (event) => {
     event.preventDefault();
+
     const usernameInput = inputTextFavorite.value;
-
     const gitFavorite = await getProfileGithub(usernameInput);
-    favorites.push(gitFavorite);
-    attProfileGithubLocalStorage();
 
-    const row = createItemFavorite(gitFavorite);
-    tableFavorites.append(row);
+    loginsAdd = favorites.map((favorite) => {
+      return favorite.login;
+    });
+
+    const nameDoesNotExist = loginsAdd.includes(gitFavorite.login);
+
+    if (nameDoesNotExist) {
+      alert("O usuário ja existe");
+    }
+
+    if (gitFavorite.login == undefined) {
+      alert("O usuário não existe");
+    }
+
+    if (gitFavorite.login !== undefined && !nameDoesNotExist) {
+      favorites.push(gitFavorite);
+      attProfileGithubLocalStorage();
+      noFavDisplay();
+      const row = createItemFavorite(gitFavorite);
+      tableFavorites.append(row);
+      inputTextFavorite.value = "";
+    }
+    inputTextFavorite.value = "";
   });
 
+  // iteracao para adicionar os itens criados ao carregar a pagina
   favorites.forEach((favorite) => {
     const row = createItemFavorite(favorite);
     tableFavorites.append(row);
   });
-
-  console.log(favorites);
 }

@@ -27,3 +27,7 @@
 body {
   background-color: var(--background-color);
 }
+
+.hidden {
+  display: none;
+}
