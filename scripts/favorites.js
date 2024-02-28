@@ -5,7 +5,7 @@ export default function favoriteProfile() {
   const displayNoFavorites = document.querySelector(
     ".table-favorites-body-noFav"
   );
-  console.log(displayNoFavorites);
+
   let favorites = JSON.parse(localStorage.getItem("favoriteProfile")) || [];
   let loginsAdd = [];
 
@@ -105,7 +105,6 @@ export default function favoriteProfile() {
         public_repos,
         followers,
       };
-      
     } catch (erro) {
       console.log(erro);
     }
@@ -147,4 +146,26 @@ export default function favoriteProfile() {
     const row = createItemFavorite(favorite);
     tableFavorites.append(row);
   });
+
+  const searchBar = document.querySelector(".search-bar-input");
+  searchBar.addEventListener("input", filterSearch);
+
+  function filterSearch() {
+    const favoritesDisplay = document.querySelectorAll(
+      ".table-favorites-body-line"
+    );
+    const filterValue = searchBar.value.toLowerCase();
+
+    favoritesDisplay.forEach((favorite) => {
+      const userName = favorite
+        .querySelector(".table-favorites-body-profile a p")
+        .textContent.toLowerCase();
+
+      favorite.style.display = filterValue
+        ? userName.includes(filterValue)
+          ? ""
+          : "none"
+        : "";
+    });
+  }
 }
